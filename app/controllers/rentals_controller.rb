@@ -1,4 +1,5 @@
 class RentalsController < ApplicationController
+  before_action :set_rental, only: [:show, :edit, :update, :destroy]
 
   def index
     @rentals = Rental.all
@@ -11,42 +12,35 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    if @rental.invalid?
-      render :new
+    if @rental.save
+      redirect_to rentals_path
     else
-      if @rental.save
-        redirect_to rentals_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 
   def show
-    @rental = Rental.find(params[:id])
   end
 
   def edit
-    @rental = Rental.find(params[:id])
+  end
+
+  def update
+    if @rental.update(rental_params)
+      redirect_to rentals_path
+    else
+      render :edit
+    end
   end
 
   private
 
+  def set_rental
+    @rental = Rental.find(params[:id])
+  end
+
   def rental_params
-    # params = { rental: {
-    #        name: 'jack',
-    #        rent: 999,
-    #        address: 'tokyo',
-    #        age: 2,
-    #        note: 'nnnnnnnnnn',
-    #        nearest_stations_attributes: [
-    #          {route_name: '山手線', station_name: '渋谷駅', walking_time: 10 },
-    #          {route_name: '中央線', station_name: '東小金井駅', walking_time: 15 },
-    #        ]
-    #  }}
-    # params.require(:picture).permit(:comment, :image, :user_id, :image_cache)
     params.require(:rental).permit(:name, :rent, :address, :age, :note,
      nearest_stations_attributes: [:route_name, :station_name, :walking_time])
   end
-
 end

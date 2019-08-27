@@ -13,11 +13,20 @@
  *= require_tree .
  *= require_self
  */
- .divide {
-   border-style: solid;
-   border-top: 1px;
-   border-color: #dcdcdc;
- }
+.upper_area {
+  display: flex;
+}
+.main_contents {
+}
+.error_contents {
+  color: red;
+  margin-left: 100px;
+}
+.divide {
+ border-style: solid;
+ border-top: 1px;
+ border-color: #dcdcdc;
+}
 .button_area input {
   font-size: 20px;
 }

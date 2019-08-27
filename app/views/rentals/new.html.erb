@@ -1,20 +1,25 @@
 <h1>物件登録</h1>
 <%= form_for @rental, url: rentals_path, method: "post" do |f| %>
-  <% if @rental.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger" role="alert">
-      <h2><%= @rental.errors.count %>件のエラーがあります。</h2>
-      <ul>
-      <% @rental.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <div class="upper_area">
+    <div class="main_contents">
+      <p>物件名<br><%= f.text_field :name %></p>
+      <p>賃料<br><%= f.number_field :rent, min: 0 %>円</p>
+      <p>住所<br><%= f.text_field :address %></p>
+      <p>築年数<br><%= f.number_field :age, min: 0 %>年</p>
+      <p>備考<br><%= f.text_area :note %></p>
     </div>
-  <% end %>
-  <p>物件名<br><%= f.text_field :name %></p>
-  <p>賃料<br><%= f.number_field :rent, min: 0 %>円</p>
-  <p>住所<br><%= f.text_field :address %></p>
-  <p>築年数<br><%= f.number_field :age, min: 0 %>年</p>
-  <p>備考<br><%= f.text_area :note %></p>
+    <div class="error_contents">
+      <% if @rental.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger" role="alert">
+          <ul>
+          <% @rental.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="divide"></div>
   <% nearest_stations_count = 1 %>
   <%= f.fields_for :nearest_stations do |m| %>
