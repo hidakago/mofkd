@@ -13,7 +13,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     if @rental.save
-      redirect_to rentals_path
+      redirect_to rentals_path, notice:"物件情報を登録しました！"
     else
       render :new
     end
@@ -27,10 +27,19 @@ class RentalsController < ApplicationController
 
   def update
     if @rental.update(rental_params)
-      redirect_to rentals_path
+      redirect_to rentals_path, notice:"物件情報を更新しました！"
     else
       render :edit
     end
+  end
+
+  def destroy
+    @nearest_stations = NearestStation.where(rental_id: @rental.id)
+    @nearest_stations.each do |n|
+      n.destroy
+    end
+    @rental.destroy
+    redirect_to rentals_path, notice:"物件情報を削除しました！"
   end
 
   private

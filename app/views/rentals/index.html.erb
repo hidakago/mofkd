@@ -1,4 +1,4 @@
-<h1>物件一覧</h1>
+<h1>物件一覧</h1><div class="notice_contents"><%= notice %></div>
 <table class="rentals_list">
   <tr>
     <th class="rentals_name">物件名</th>
@@ -29,7 +29,7 @@
       </td>
       <td>
         <div class="link_area">
-          <p><%= link_to("削除", rental_path(r.id), method: :delete) %></p>
+          <p><%= link_to("削除", rental_path(r.id), method: :delete, data: { confirm: '本当に削除していいですか？' }) %></p>
         </div>
       </td>
     </tr>
