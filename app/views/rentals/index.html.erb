@@ -1,0 +1,17 @@
+<% @rentals.each do |r| %>
+  <div class="content_image_area" >
+    <p>物件名<span></span><%= r.name %></p>
+    <p>賃料<span></span><%= r.rent %></p>
+    <p>住所<span></span><%= r.address %></p>
+    <p>築年数<span></span><%= r.age %></p>
+    <p>備考<span></span><%= r.note %></p>
+  </div>
+  <% ncount = 1 %>
+  <% r.nearest_stations.each do |n| %>
+    <p><%= "最寄り駅" + ncount.to_s %></p>
+    <p>路線名<span></span><%= n.route_name %></p>
+    <p>駅名<span></span><%= n.station_name %></p>
+    <p>徒歩分数<span></span><%= n.walking_time %></p>
+    <% ncount += 1 %>
+  <% end %>
+<% end %>

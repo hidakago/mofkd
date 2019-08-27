@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ .divide {
+   border-style: solid;
+   border-top: 1px;
+   border-color: #dcdcdc;
+ }
+.button_area input {
+  font-size: 20px;
+}
+.link_area a {
+  color: #808080;
+}
