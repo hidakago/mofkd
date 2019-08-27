@@ -48,3 +48,17 @@
 .rentals_col3 {
   width: 26px;
 }
+.show_item {
+  margin-left: 30px;
+  width: 1400px;
+}
+.show_item p {
+  margin-bottom: 40px;
+}
+.show_item span {
+  font-weight: bold;
+}
+.space {
+  margin-left: 5px;
+  color: #808080;
+}
