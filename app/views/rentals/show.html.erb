@@ -1,0 +1,32 @@
+<h1>物件登録</h1>
+<%= form_for @rental, url: rentals_path, method: "post" do |f| %>
+  <% if @rental.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h2><%= @rental.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @rental.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @rentals.each do |r| %>
+    <p>物件名<br><%= r.name %></p>
+    <p>賃料<br><%= (r.rent).to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %>円</p>
+    <p>住所<br><%= r.address %></p>
+    <p>築年数<br><%= r.age %>年</p>
+    <p>備考<br><%= r.note %></p>
+    <div class="divide"></div>
+  <% nearest_stations_count = 1 %>
+  <%= r.nearest_stations do |m| %>
+    <h4><%= "最寄り駅#{nearest_stations_count}" %></h4>
+    <p>路線名<br><%= m.route_name %></p>
+    <p>駅名<br><%= m.station_name %></p>
+    <p>徒歩分数<br><%= mwalking_time %>分</p>
+    <% nearest_stations_count += 1 %>
+  <% end %>
+<% end %>
+<div class="link_area">
+  <p><%= link_to("戻る", rentals_path) %></p>
+</div>

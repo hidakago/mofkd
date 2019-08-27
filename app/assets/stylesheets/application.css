@@ -24,3 +24,27 @@
 .link_area a {
   color: #808080;
 }
+.rentals_name {
+  width: 66px;
+}
+.rentals_rent {
+  width: 60px;
+}
+.rentals_address {
+  width: 120px;
+}
+.rentals_age {
+  width: 32px;
+}
+.rentals_note {
+  width: 1030px;
+}
+.rentals_col1 {
+  width: 26px;
+}
+.rentals_col2 {
+  width: 26px;
+}
+.rentals_col3 {
+  width: 26px;
+}
