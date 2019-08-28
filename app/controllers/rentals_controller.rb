@@ -23,10 +23,15 @@ class RentalsController < ApplicationController
   end
 
   def edit
+    count_max = 5
+    difference_count = count_max - NearestStation.where(rental_id: @rental.id).count
+    if difference_count > 0
+      difference_count.times { @rental.nearest_stations.build }
+    end
   end
 
   def update
-    if @rental.update(rental_params)
+    if @rental.update(rental_params2)
       redirect_to rentals_path, notice:"物件情報を更新しました！"
     else
       render :edit
@@ -51,5 +56,9 @@ class RentalsController < ApplicationController
   def rental_params
     params.require(:rental).permit(:name, :rent, :address, :age, :note,
      nearest_stations_attributes: [:route_name, :station_name, :walking_time])
+  end
+  def rental_params2
+    params.require(:rental).permit(:name, :rent, :address, :age, :note,
+     nearest_stations_attributes: [:id, :route_name, :station_name, :walking_time])
   end
 end
