@@ -1,0 +1,40 @@
+<h1>物件一覧</h1><div class="notice_contents"><%= notice %></div>
+<table class="rentals_list">
+  <tr>
+    <th class="rentals_name">物件名</th>
+    <th class="rentals_rent">賃料</th>
+    <th class="rentals_address">住所</th>
+    <th class="rentals_age">築年数</th>
+    <th class="rentals_note">備考</th>
+    <th class="rentals_col1"></th>
+    <th class="rentals_col2"></th>
+    <th class="rentals_col3"></th>
+  </tr>
+  <% @rentals.each do |r| %>
+    <tr>
+      <td><p><%= r.name %></p></td>
+      <td><p><%= (r.rent).to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %>円</p></td>
+      <td><p><%= r.address %></p></td>
+      <td><p><%= r.age %>年</p></td>
+      <td><p><%= r.note %></p></td>
+      <td>
+        <div class="link_area">
+          <p><%= link_to("詳細", rental_path(r.id)) %></p>
+        </div>
+      </td>
+      <td>
+        <div class="link_area">
+          <p><%= link_to("編集", edit_rental_path(r.id)) %></p>
+        </div>
+      </td>
+      <td>
+        <div class="link_area">
+          <p><%= link_to("削除", rental_path(r.id), method: :delete, data: { confirm: '本当に削除していいですか？' }) %></p>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div class="link_area">
+  <p><%= link_to("物件を登録する", new_rental_path) %></p>
+</div>

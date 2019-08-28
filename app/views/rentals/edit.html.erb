@@ -1,0 +1,42 @@
+<h1>物件編集</h1>
+<%= form_for @rental, url: rental_path(@rental.id), method: "put" do |f| %>
+  <div class="upper_area">
+    <div class="main_contents">
+      <p>物件名<br><%= f.text_field :name %></p>
+      <p>賃料<br><%= f.number_field :rent, min: 0 %>円</p>
+      <p>住所<br><%= f.text_field :address %></p>
+      <p>築年数<br><%= f.number_field :age, min: 0 %>年</p>
+      <p>備考<br><%= f.text_area :note %></p>
+    </div>
+    <div class="error_contents">
+      <% if @rental.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger" role="alert">
+          <ul>
+          <% @rental.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <% nearest_stations_count = 1 %>
+  <%= f.fields_for :nearest_stations do |m| %>
+    <h4><%= "最寄り駅#{nearest_stations_count}" %></h4>
+    <p>路線名<br><%= m.text_field :route_name %></p>
+    <p>駅名<br><%= m.text_field :station_name %></p>
+    <p>徒歩分数<br><%= m.number_field :walking_time, min: 0 %>分</p>
+    <% nearest_stations_count += 1 %>
+  <% end %>
+  <div class="button_area">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+<div class="link_area">
+  <p>
+    <%= link_to("詳細", rental_path(@rental.id)) %>
+    <span class="space">|</span><span class="space"></span>
+    <%= link_to("戻る", rentals_path) %>
+  </p>
+</div>

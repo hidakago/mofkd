@@ -13,3 +13,64 @@
  *= require_tree .
  *= require_self
  */
+.notice_contents {
+  color: green;
+}
+.upper_area {
+  display: flex;
+}
+.main_contents {
+}
+.error_contents {
+  color: red;
+  margin-left: 200px;
+}
+.divide {
+ border-style: solid;
+ border-top: 1px;
+ border-color: #dcdcdc;
+}
+.button_area input {
+  font-size: 20px;
+}
+.link_area a {
+  color: #808080;
+}
+.rentals_name {
+  width: 66px;
+}
+.rentals_rent {
+  width: 60px;
+}
+.rentals_address {
+  width: 120px;
+}
+.rentals_age {
+  width: 32px;
+}
+.rentals_note {
+  width: 1030px;
+}
+.rentals_col1 {
+  width: 26px;
+}
+.rentals_col2 {
+  width: 26px;
+}
+.rentals_col3 {
+  width: 26px;
+}
+.show_item {
+  margin-left: 30px;
+  width: 1400px;
+}
+.show_item p {
+  margin-bottom: 40px;
+}
+.show_item span {
+  font-weight: bold;
+}
+.space {
+  margin-left: 5px;
+  color: #808080;
+}
